@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="StudyPal+ Calendar Scheduler - Plan your study sessions" />
+  <title>StudyPal+ for BAL</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="calendar.css" />
+</head>
+<body>
+  <aside class="sidebar" aria-label="Study tools navigation">
+    <div class="sidebar-top">
+      <h1 class="brand">
+        STUDYPAL+<br />
+        <span class="for-text">for BAL</span>
+      </h1>
+      <nav class="nav-list" aria-label="Primary navigation">
+        <a href="index.html" class="nav-item" role="link" tabindex="0">
+          <i class="far fa-clock" aria-hidden="true"></i>
+          <span>TIMER</span>
+        </a>
+        <a href="Calculator.html" class="nav-item" role="link" tabindex="0">
+          <i class="fas fa-calculator" aria-hidden="true"></i>
+          <span>CALCULATOR</span>
+        </a>
+        <a href="calendar.html" class="nav-item active" aria-current="page" role="link" tabindex="0">
+          <i class="far fa-calendar-alt" aria-hidden="true"></i>
+          <span>CALENDAR</span>
+        </a>
+      </nav>
+      <section class="verse" aria-label="Study advice">
+        <div class="verse-heading">
+          <strong>Study Tip</strong>
+          <i class="fas fa-lightbulb" aria-hidden="true"></i>
+        </div>
+        <p id="studyTip" tabindex="0">Plan your study sessions in advance for better retention</p>
+      </section>
+    </div>
+  </aside>
+
+  <main id="main-content" class="main" aria-label="Calendar interface">
+    <header class="calendar-header">
+      <h2>Study Schedule</h2>
+      <div class="calendar-controls" role="group" aria-label="Month navigation controls">
+        <button id="prev-month" class="control-btn" aria-label="Previous month">
+          <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <!-- Use a landmark role to announce month/year dynamically -->
+        <h3 id="current-month-year" aria-live="polite" aria-atomic="true" tabindex="0">June 2025</h3>
+        <button id="next-month" class="control-btn" aria-label="Next month">
+          <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="theme-toggle" role="group" aria-label="Toggle color scheme">
+        <label class="switch" for="themeToggle">
+          <input type="checkbox" id="themeToggle" aria-checked="false" aria-label="Toggle color scheme" />
+          <span class="slider"></span>
+        </label>
+        <span id="themeLabel" aria-live="polite" tabindex="0">Day</span>
+      </div>
+    </header>
+
+    <section class="calendar-container" aria-label="Monthly calendar">
+      <div class="calendar-nav">
+        <div class="weekdays" role="row" aria-label="Weekday names">
+          <div role="columnheader" tabindex="0">Sun</div>
+          <div role="columnheader" tabindex="0">Mon</div>
+          <div role="columnheader" tabindex="0">Tue</div>
+          <div role="columnheader" tabindex="0">Wed</div>
+          <div role="columnheader" tabindex="0">Thu</div>
+          <div role="columnheader" tabindex="0">Fri</div>
+          <div role="columnheader" tabindex="0">Sat</div>
+        </div>
+      </div>
+      <div class="calendar-grid" id="calendar-grid" role="grid" aria-label="Calendar days">
+        <!-- JavaScript will inject day cells here -->
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-date" aria-hidden="true" tabindex="-1">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h3 id="modal-date" tabindex="0">Schedule for June 15, 2025</h3>
+        <button class="close-modal" aria-label="Close modal" type="button">&times;</button>
+      </header>
+      <section class="modal-body">
+        <div class="events-list" id="events-list" aria-live="polite" aria-relevant="additions removals" tabindex="0"></div>
+        <form id="add-event-form" aria-label="Add new schedule form">
+          <h4>Add New Schedule</h4>
+          <div class="form-group">
+            <label for="event-title">Title</label>
+            <input type="text" id="event-title" placeholder="Study session title" required autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label for="event-time">Time</label>
+            <input type="time" id="event-time" required />
+          </div>
+          <div class="form-group">
+            <label for="event-duration">Duration (minutes)</label>
+            <input type="number" id="event-duration" min="15" max="240" value="60" />
+          </div>
+          <div class="form-group">
+            <label for="event-description">Description</label>
+            <textarea id="event-description" placeholder="What will you study?" rows="3"></textarea>
+          </div>
+          <button type="submit" class="add-btn">
+            <i class="fas fa-plus" aria-hidden="true"></i> Add Schedule
+          </button>
+          <button class="delete-study-session" data-id="123">Remove</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

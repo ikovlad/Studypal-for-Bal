@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyPal+ Professional Calculator - Advanced financial calculator with tax calculations, memory functions, and history tracking">
+  <title>StudyPal+ for BAL</title>
+  <!-- Preload critical resources -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" as="style">
+  <!-- External resources with integrity checks -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" aria-label="Financial tools navigation">
+    <div class="sidebar-top">
+      <div class="brand" role="heading" aria-level="1">
+        STUDYPAL+<br>
+        <span class="for-text">Professional Tools</span>
+      </div>
+      <nav class="nav-list" aria-label="Primary navigation">
+        <a href="index.html" class="nav-item">
+          <i class="far fa-clock" aria-hidden="true"></i>
+          <span>TIMER</span>
+        </a>
+        <a href="Calculator.html" class="nav-item active" aria-current="page">
+          <i class="fas fa-calculator" aria-hidden="true"></i>
+          <span>CALCULATOR</span>
+        </a>
+        <a href="quiz.html" class="nav-item">
+          <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+          <span>QUIZ</span>
+        </a>
+      </nav>
+      <section class="verse" aria-label="Financial advice">
+        <div class="verse-heading">
+          <strong>Financial Tip</strong>
+          <i class="fas fa-coins" aria-hidden="true"></i>
+        </div>
+        <p id="financialTip">Double-check all calculations for accuracy</p>
+        <noscript>
+          <p>Financial tips require JavaScript to be enabled</p>
+        </noscript>
+      </section>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main" aria-label="Calculator interface">
+    <header class="calculator-header">
+      <h2>Professional Calculator</h2>
+      <div class="theme-toggle">
+        <label class="switch">
+          <input type="checkbox" id="themeToggle" aria-label="Toggle color scheme">
+          <span class="slider"></span>
+        </label>
+        <span id="themeLabel" aria-live="polite">Day</span>
+      </div>
+    </header>
+
+    <div class="calculator-wrapper">
+      <div class="calculator-container">
+        <!-- Display Panel -->
+        <div class="display-panel" role="status" aria-live="polite">
+          <div class="equation-display" id="equation" aria-label="Current equation"></div>
+          <div class="main-display" id="display" aria-label="Current value">0</div>
+          <div class="memory-display">M: <span id="memoryValue" aria-label="Memory storage">0</span></div>
+        </div>
+
+        <!-- Calculator Controls -->
+        <div class="calculator-grid" role="grid" aria-label="Calculator controls">
+          <!-- Memory Row -->
+          <button class="btn memory-btn" id="memoryClear" aria-label="Memory clear">MC</button>
+          <button class="btn memory-btn" id="memoryRecall" aria-label="Memory recall">MR</button>
+          <button class="btn memory-btn" id="memoryAdd" aria-label="Add to memory">M+</button>
+          <button class="btn memory-btn" id="memorySubtract" aria-label="Subtract from memory">M-</button>
+          
+          <!-- Function Row -->
+          <button class="btn operation-btn" data-op="TAX+" aria-label="Add tax">TAX+</button>
+          <button class="btn operation-btn" data-op="%" aria-label="Calculate percentage">%</button>
+          <button class="btn operation-btn" data-op="(" aria-label="Open parenthesis">(</button>
+          <button class="btn operation-btn" data-op=")" aria-label="Close parenthesis">)</button>
+
+          <!-- Number Pad -->
+          <button class="btn number-btn" data-number="7" aria-label="Seven">7</button>
+          <button class="btn number-btn" data-number="8" aria-label="Eight">8</button>
+          <button class="btn number-btn" data-number="9" aria-label="Nine">9</button>
+          <button class="btn operation-btn" data-op="÷" aria-label="Divide">÷</button>
+
+          <button class="btn number-btn" data-number="4" aria-label="Four">4</button>
+          <button class="btn number-btn" data-number="5" aria-label="Five">5</button>
+          <button class="btn number-btn" data-number="6" aria-label="Six">6</button>
+          <button class="btn operation-btn" data-op="×" aria-label="Multiply">×</button>
+
+          <button class="btn number-btn" data-number="1" aria-label="One">1</button>
+          <button class="btn number-btn" data-number="2" aria-label="Two">2</button>
+          <button class="btn number-btn" data-number="3" aria-label="Three">3</button>
+          <button class="btn operation-btn" data-op="-" aria-label="Subtract">-</button>
+
+          <button class="btn number-btn" data-number="0" aria-label="Zero">0</button>
+          <button class="btn number-btn decimal-btn" aria-label="Decimal point">.</button>
+          <button class="btn operation-btn" id="clearEntry" aria-label="Clear entry">CE</button>
+          <button class="btn operation-btn" data-op="+" aria-label="Add">+</button>
+
+          <!-- Control Row -->
+          <button class="btn equals-btn" id="calculate" style="grid-column: span 2" aria-label="Calculate result">=</button>
+          <button class="btn clear-btn" id="clearAll" aria-label="All clear">AC</button>
+        </div>
+
+        <!-- Tax Controls -->
+        <div class="tax-panel">
+          <label for="taxRate" class="sr-only">Tax rate percentage</label>
+          <input type="number" id="taxRate" placeholder="Tax Rate %" step="0.1" 
+                 aria-label="Enter tax rate percentage">
+          <button class="btn tax-btn" id="setTaxBtn" aria-label="Set tax rate">Set Tax</button>
+        </div>
+      </div>
+
+      <!-- Calculation History -->
+      <section class="history-panel" aria-label="Calculation history">
+        <h4>Calculation History 
+          <button class="btn clear-history" id="clearHistory" aria-label="Clear history">
+            Clear
+          </button>
+        </h4>
+        <div id="historyList" role="log" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.js"></script>
+</body>
+</html>

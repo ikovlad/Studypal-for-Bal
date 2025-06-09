@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudyPal+ - A productivity tool for BAL students featuring focus timers, calculator, and quizzes">
+  <title>StudyPal+ for BAL - Focus Timer</title>
+  <!-- Preload critical resources -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" as="style">
+  <!-- External resources -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="sidebar-top">
+      <div class="brand" role="heading" aria-level="1">
+        STUDYPAL+<br>
+        <span class="for-text">For BAL</span>
+      </div>
+      <nav class="nav-list" aria-label="Primary">
+        <a href="index.html" class="nav-item active" aria-current="page">
+          <i class="far fa-clock" aria-hidden="true"></i>
+          <span>STUDY TIMER</span>
+        </a>
+        <a href="Calculator.html" class="nav-item">
+          <i class="fas fa-calculator" aria-hidden="true"></i>
+          <span>CALCULATOR</span>
+        </a>
+        <a href="quiz.html" class="nav-item">
+          <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+          <span>QUIZ</span>
+        </a>
+      </nav>
+      <section class="verse" aria-label="Verse of the day">
+        <div class="verse-heading">
+          <strong>Verse of the Day</strong>
+          <i aria-hidden="true"></i>
+        </div>
+        <p id="verseDisplay"></p>
+        <noscript>
+          <p>Please enable JavaScript to view the daily verse.</p>
+        </noscript>
+      </section>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main">
+    <header class="timer-header">
+      <h2>Focus Timer</h2>
+      <div class="theme-toggle">
+        <label class="switch">
+          <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="slider"></span>
+        </label>
+        <span id="themeLabel" aria-live="polite">Day</span>
+      </div>
+    </header>
+
+    <div class="timer-container">
+      <button class="timer-main" onclick="startTimer(1500, this)" 
+              aria-label="Start 25 minute study session">
+        <div class="progress-ring" role="progressbar" 
+             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <svg aria-hidden="true">
+            <circle class="progress-ring-circle" r="45" cx="50" cy="50"/>
+          </svg>
+        </div>
+        <div class="timer-display" id="mainTime" aria-live="polite">25:00</div>
+        <h3>STUDY SESSION</h3>
+      </button>
+
+      <button class="timer-break" onclick="startTimer(300, this)" 
+              aria-label="Start 5 minute break">
+        <div class="progress-ring" role="progressbar" 
+             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <svg aria-hidden="true">
+            <circle class="progress-ring-circle" r="22" cx="25" cy="25"/>
+          </svg>
+        </div>
+        <div class="timer-display" id="breakTime" aria-live="polite">05:00</div>
+        <h3>QUICK BREAK</h3>
+      </button>
+    </div>
+
+    <!-- Timer Controls -->
+    <div class="controls">
+      <button id="resetBtn" class="control-btn" aria-label="Reset timer">
+        <i class="fas fa-redo" aria-hidden="true"></i>
+      </button>
+      <button id="pauseBtn" class="control-btn" aria-label="Pause timer">
+        <i class="fas fa-pause" aria-hidden="true"></i>
+      </button>
+    </div>
+  </main>
+
+  <audio id="beep" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
